@@ -1,0 +1,4 @@
+dataset/
+prepared_stt/
+.venv/
+.DS_Store
