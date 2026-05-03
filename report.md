@@ -34,6 +34,19 @@ Audio was preprocessed in Part 1: converted to 16 kHz mono WAV, normalized text 
 
 ---
 
+### Training Dynamics
+
+The figure below illustrates the training and validation loss over the course of the fine-tuning process.
+
+![Training and Validation Loss](loss_plot.png)
+
+**Key Observations:**
+*  The training loss (blue) shows a consistent and sharp decline, indicating that the model effectively learned the specific acoustic features of the Ukrainian dataset.
+*  The validation loss (red) reached its minimum at approximately step 4,000. Beyond this point, a slight divergence between the training and validation curves is observed, which is a classic sign of overfitting.
+*  To ensure the highest quality of transcription, the training process utilized a `ModelCheckpoint` callback. This allowed us to ignore the overfitted later stages and automatically select the weights from the epoch with the lowest `val/wer`, resulting in the superior performance documented in the results section.
+
+---
+
 ## Evaluation
 The model was evaluated on the validation split during training using two standard speech recognition metrics — **WER (Word Error Rate)** and **CER (Character Error Rate)**. WER measures the percentage of words that were predicted incorrectly, while CER does the same at the character level. Lower values mean better performance.
 
