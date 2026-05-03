@@ -58,6 +58,23 @@ To evaluate the performance of the fine-tuned Whisper Small model, a held-out te
 
 ---
 
+### Results Comparison (Baseline vs. Fine-tuned)
+
+To evaluate the effectiveness of our fine-tuning, we compared the performance of our final model against the base `openai/whisper-small` version (without additional training) using a held-out test set.
+
+| Model | WER (%) ↓ | CER (%) ↓ | COMET ↑ |
+| :--- | :--- | :--- | :--- |
+| **Baseline** (`openai/whisper-small`) | 42.37 | 20.85 | 0.7523 |
+| **Fine-tuned** (Our model) | **28.93** | **12.01** | **0.8081** |
+
+Comparing our model with the pre-trained weights demonstrates an improvement in speech recognition quality after fine-tuning:
+
+1. **Substantial reduction in word and character-level errors:** The Word Error Rate (WER) decreased by **13.44%** (from 42.37% to 28.93%), and the Character Error Rate (CER) dropped by nearly half, showing an **8.84%** improvement (from 20.85% to 12.01%). This indicates that the model is much less prone to confusing individual letters and words, having successfully adapted to the phonetics of the target dataset.
+2. **Improvement in semantic accuracy:** The increase in the COMET score (from 0.7523 to 0.8081) confirms that the generated text has become not only phonetically more accurate but also more coherent and semantically closer to the original transcriptions.
+3. **Generalization capability:** Because the evaluation was conducted on speakers who were excluded from the training phase (speaker-independent STT), these results prove that the model did not merely memorize the training data. Instead, it genuinely improved its overall ability to recognize and transcribe Ukrainian speech.
+
+---
+
 ## Analysis of Results and Hypotheses
 The results demonstrate a specific pattern often observed in complex audio datasets involving spontaneous speech (such as the Toronto Dataset).
 
